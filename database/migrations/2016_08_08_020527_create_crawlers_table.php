@@ -10,8 +10,8 @@ class CreateCrawlersTable extends Migration {
 		Schema::create('crawlers', function(Blueprint $table) {
 			$table->increments('id');
 			$table->integer('site_id')->unsigned()->index();
-			$table->string('cookie_header', 500)->nullable();
-			$table->string('cookie_file', 255)->nullable();
+			$table->integer('cookie_id')->unsigned()->nullable()->index();
+            $table->time('active_at')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 		});
