@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        // Commands\Inspire::class,
+        Commands\Inspire::class,
     ];
 
     /**
@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
         $schedule->call(function () {
-            file_put_contents('/test.txt', file_get_contents('/test.txt') . "\r\n" . "helloworld" . time() . "\r\n");
+            file_put_contents("/var/www/html/test.txt", file_get_contents("/var/www/html/test.txt") . "\r\n" . date('m/d/Y h:i:s a', time()) . ": helloworld" . "\r\n");
         })->everyMinute();
     }
 }
