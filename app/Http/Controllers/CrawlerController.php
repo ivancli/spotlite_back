@@ -33,11 +33,15 @@ class CrawlerController extends Controller
             if ($dom->loadHTML($output)) {
                 $xpath = new \DOMXPath($dom);
                 $result = $xpath->query($request->get('xpath'));
-                if($result->length > 0){
-                    echo "<pre>";
-                    print_r(trim($result->item(0)->nodeValue));
-                    echo "</pre>";
-                }else{
+                if ($result->length > 0) {
+                    foreach ($result as $tag) {
+                        if (trim($tag->nodeValue) != "") {
+                            echo $tag->nodeValue;
+                        } else {
+                            echo($dom->saveHTML($tag));
+                        }
+                    }
+                } else {
                     echo "No data crawled";
                 }
             }
