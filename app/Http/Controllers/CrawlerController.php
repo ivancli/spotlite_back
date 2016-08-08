@@ -10,13 +10,41 @@ namespace App\Http\Controllers;
 
 
 use App\Libraries\CommonFunctions;
+use Illuminate\Http\Request;
+use Validator;
 
 class CrawlerController extends Controller
 {
     use CommonFunctions;
 
-    public function crawl()
+    public function crawl(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'url' => 'required|max:2083',
+            'xpath' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        } else {
+            $output = $this->sendCurl($request->get('url'));
+            libxml_use_internal_errors(true);
+            $dom = new \DOMDocument();
+            if ($dom->loadHTML($output)) {
+                $xpath = new \DOMXPath($dom);
+                $result = $xpath->query($request->get('xpath'));
+                if($result->length > 0){
+                    echo "<pre>";
+                    print_r(trim($result->item(0)->nodeValue));
+                    echo "</pre>";
+                }else{
+                    echo "No data crawled";
+                }
+            }
+        }
+
+        exit();
+
         /*Bunning*/
         $output = $this->sendCurl("https://www.bunnings.com.au/marquee-2400-x-600-x-25mm-white-laminate-bench-top_p2660665");
         /*Dick Smith*/
@@ -42,12 +70,12 @@ class CrawlerController extends Controller
             /*BIG W*/
 //        $result = $xpath->query('//*[@id="content"]/div[3]/div/div[1]/div[2]/div[3]/div/span[3]');
             /*BING LEE*/
-        $result = $xpath->query('//*[@id="product-price-43773"]/span');
+            $result = $xpath->query('//*[@id="product-price-43773"]/span');
 
-        echo "<pre>";
+            echo "<pre>";
 //        print_r(preg_replace('/\s+/', ' ', $dom->saveHTML($result[1])));
-        print_r($result->item(0)->nodeValue);
-        echo "</pre>";
+            print_r($result->item(0)->nodeValue);
+            echo "</pre>";
 
 //        echo "<pre>";
 //        print_r($result[0]);

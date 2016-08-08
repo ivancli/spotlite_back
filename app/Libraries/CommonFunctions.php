@@ -29,7 +29,9 @@ trait CommonFunctions
 
         if (is_array($cookie) && isset($cookie['file'])) {
             curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie['file']);
+            curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie['file']);
         }
+
         curl_setopt($ch, CURLOPT_HTTPHEADER, $curlHeaders);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

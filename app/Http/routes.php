@@ -10,4 +10,8 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/', function(){
+    return view('crawler_test');
+});
 Route::get('crawl', ['uses' => 'CrawlerController@crawl']);
+Route::post('crawl', ['uses' => 'CrawlerController@crawl']);
