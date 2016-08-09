@@ -28,23 +28,39 @@ class CrawlerController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
             $output = $this->sendCurl($request->get('url'));
-            libxml_use_internal_errors(true);
-            $dom = new \DOMDocument();
-            if ($dom->loadHTML($output)) {
-                $xpath = new \DOMXPath($dom);
-                $result = $xpath->query($request->get('xpath'));
-                if ($result->length > 0) {
-                    foreach ($result as $tag) {
-                        if (trim($tag->nodeValue) != "") {
-                            echo $tag->nodeValue;
-                        } else {
-                            echo($dom->saveHTML($tag));
-                        }
-                    }
-                } else {
-                    echo "No data crawled";
-                }
+            if($request->get('class_name')){
+                $className = $request->get("class_name");
+            }else {
+                $className = "XPathParser";
             }
+            $className = 'App\\Libraries\\Parsers\\'.$className;
+            $parser = new $className(array(
+                "html" => $output,
+                "xpath" => $request->get('xpath')
+            ));
+            $result = $parser->parse();
+            echo "<pre>";
+            print_r($result);
+            echo "</pre>";
+            exit();
+//            libxml_use_internal_errors(true);
+//            $dom = new \DOMDocument();
+//            if ($dom->loadHTML($output)) {
+//                $xpath = new \DOMXPath($dom);
+//                $result = $xpath->query($request->get('xpath'));
+//                if ($result->length > 0) {
+//                    foreach ($result as $tag) {
+//                        if (trim($tag->nodeValue) != "") {
+//                            echo $tag->nodeValue;
+//                        } else {
+//                            echo($dom->saveHTML($tag));
+//                        }
+//                    }
+//                } else {
+//                    echo "No data crawled";
+//                }
+//            }
+
         }
 
         exit();
