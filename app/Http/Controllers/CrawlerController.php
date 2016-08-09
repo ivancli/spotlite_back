@@ -28,6 +28,7 @@ class CrawlerController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
             $output = $this->sendCurl($request->get('url'));
+print_r($output);exit();
             libxml_use_internal_errors(true);
             $dom = new \DOMDocument();
             if ($dom->loadHTML($output)) {

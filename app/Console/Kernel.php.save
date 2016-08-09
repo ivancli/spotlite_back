@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
         $schedule->call(function () {
-            date_default_timezone_set('Australia/Sydney');
+		
             file_put_contents("/var/www/html/test.txt", file_get_contents("/var/www/html/test.txt") . "\r\n" . date('m/d/Y h:i:s a', time()) . ": helloworld" . "\r\n");
         })->everyMinute();
     }
