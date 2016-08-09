@@ -9,6 +9,7 @@
 namespace App\Jobs;
 
 
+use App\User;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -18,25 +19,21 @@ class CrawlPrice extends Job implements SelfHandling, ShouldQueue
 {
     use InteractsWithQueue, SerializesModels;
 
-    protected $crawlingSite;
+    protected $user;
 
-    public function __construct(Site $site)
+    public function __construct(User $user)
     {
-        $this->crawlingSite = $site;
+        $this->user = $user;
     }
 
     /**
      * Execute the job.
      *
-     * @param  Mailer  $mailer
-     * @return void
+     *
      */
-    public function handle(Mailer $mailer)
+    public function handle()
     {
-        $mailer->send('emails.reminder', ['user' => $this->user], function ($m) {
-            //
-        });
-
-        $this->user->reminders()->create(...);
+        date_default_timezone_set('Australia/Sydney');
+        file_put_contents("/var/www/html/test.txt", file_get_contents("/var/www/html/test.txt") . "\r\n" . date('m/d/Y h:i:s a', time()) . json_encode($this->user) . "\r\n");
     }
 }

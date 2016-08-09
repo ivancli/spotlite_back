@@ -2,11 +2,15 @@
 
 namespace App\Console;
 
+use App\Jobs\CrawlPrice;
+use App\User;
 use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
+    use DispatchesJobs;
     /**
      * The Artisan commands provided by your application.
      *
@@ -28,8 +32,10 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
         $schedule->call(function () {
-            date_default_timezone_set('Australia/Sydney');
-            file_put_contents("/var/www/html/test.txt", file_get_contents("/var/www/html/test.txt") . "\r\n" . date('m/d/Y h:i:s a', time()) . ": helloworld" . "\r\n");
+            $users = User::all();
+            foreach($users as $user){
+                $this->dispatch(new CrawlPrice($user));
+            }
         })->everyMinute();
     }
 }
