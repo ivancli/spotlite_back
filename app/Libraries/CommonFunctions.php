@@ -10,9 +10,6 @@ trait CommonFunctions
 {
     public function sendCurl($url, $cookie = array(), $ips = array())
     {
-
-        ini_set('user_agent', 'Mozilla/5.0 (Windows NT 6.1; rv:5.0) Gecko/20100101 Firefox/5.0 FirePHP/0.5 ');
-        $context = stream_context_create (array ('http' => array ('timeout' => 60)));
         $ch = curl_init();
         $curlHeaders = array(
             'Accept-Language: en-us',
@@ -36,13 +33,14 @@ trait CommonFunctions
         }
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, $curlHeaders);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
         curl_setopt($ch, CURLOPT_TIMEOUT, 120);
 
         /*disable this before push to live*/
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
         $buffer = curl_exec($ch);
         curl_close($ch);

@@ -11,7 +11,7 @@ class CreateCrawlersTable extends Migration {
 			$table->increments('id');
 			$table->integer('site_id')->unsigned()->index();
 			$table->integer('cookie_id')->unsigned()->nullable()->index();
-            $table->time('active_at')->nullable();
+			$table->time('active_at')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 		});

@@ -3,20 +3,20 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateGroupProductsTable extends Migration {
+class CreateUserProductsTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('group_products', function(Blueprint $table) {
+		Schema::create('user_products', function(Blueprint $table) {
 			$table->increments('id');
-			$table->timestamps();
-			$table->integer('group_id')->unsigned()->index();
+			$table->integer('user_id')->unsigned()->index();
 			$table->integer('product_id')->unsigned()->index();
+			$table->timestamps();
 		});
 	}
 
 	public function down()
 	{
-		Schema::drop('group_products');
+		Schema::drop('user_products');
 	}
 }

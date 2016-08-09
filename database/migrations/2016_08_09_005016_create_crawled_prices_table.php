@@ -10,8 +10,8 @@ class CreateCrawledPricesTable extends Migration {
 		Schema::create('crawled_prices', function(Blueprint $table) {
 			$table->increments('id');
 			$table->integer('crawler_id')->unsigned()->index();
-			$table->timestamps();
 			$table->integer('site_id')->unsigned()->index();
+			$table->timestamps();
 			$table->softDeletes();
 		});
 	}
