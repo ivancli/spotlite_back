@@ -3,12 +3,14 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateGroupsTable extends Migration {
+class CreateReportsTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('groups', function(Blueprint $table) {
+		Schema::create('reports', function(Blueprint $table) {
 			$table->increments('id');
+			$table->integer('task_id')->unsigned()->index();
+			$table->binary('content')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 		});
@@ -16,6 +18,6 @@ class CreateGroupsTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('groups');
+		Schema::drop('reports');
 	}
 }

@@ -11,7 +11,7 @@ class CreateSitesTable extends Migration {
 			$table->increments('id');
 			$table->integer('product_id')->unsigned();
 			$table->string('link', 2083)->nullable()->index();
-			$table->string('xpath', 1000)->nullable();
+			$table->string('xpath', 255)->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 		});

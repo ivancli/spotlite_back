@@ -14,6 +14,8 @@ class CreateCrawlersTable extends Migration {
 			$table->time('active_at')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
+			$table->string('crawler_class', 255)->nullable();
+			$table->string('parser_class', 255)->nullable();
 		});
 	}
 

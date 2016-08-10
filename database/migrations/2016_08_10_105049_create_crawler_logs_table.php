@@ -13,7 +13,6 @@ class CreateCrawlerLogsTable extends Migration {
 			$table->enum('status', array('started', 'prepared', 'crawled', 'validated', 'reported', 'finished'))->index();
 			$table->string('message', 500)->nullable();
 			$table->timestamps();
-			$table->softDeletes();
 		});
 	}
 

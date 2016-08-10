@@ -88,6 +88,16 @@ class CreateForeignKeys extends Migration {
 						->onDelete('cascade')
 						->onUpdate('no action');
 		});
+		Schema::table('reports', function(Blueprint $table) {
+			$table->foreign('task_id')->references('id')->on('report_tasks')
+						->onDelete('no action')
+						->onUpdate('no action');
+		});
+		Schema::table('report_logs', function(Blueprint $table) {
+			$table->foreign('task_id')->references('id')->on('report_tasks')
+						->onDelete('no action')
+						->onUpdate('no action');
+		});
 	}
 
 	public function down()
@@ -139,6 +149,12 @@ class CreateForeignKeys extends Migration {
 		});
 		Schema::table('user_products', function(Blueprint $table) {
 			$table->dropForeign('user_products_product_id_foreign');
+		});
+		Schema::table('reports', function(Blueprint $table) {
+			$table->dropForeign('reports_task_id_foreign');
+		});
+		Schema::table('report_logs', function(Blueprint $table) {
+			$table->dropForeign('report_logs_task_id_foreign');
 		});
 	}
 }
