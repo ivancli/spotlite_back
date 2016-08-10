@@ -6,12 +6,13 @@
  * Time: 10:06 PM
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Crawler;
 
 
+use App\Http\Controllers\Controller;
 use App\Libraries\CommonFunctions;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Validation\Validator;
 
 class CrawlerController extends Controller
 {

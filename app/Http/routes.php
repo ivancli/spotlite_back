@@ -15,3 +15,8 @@ Route::get('/', function(){
 });
 Route::get('crawl', ['uses' => 'CrawlerController@crawl']);
 Route::post('crawl', ['uses' => 'CrawlerController@crawl']);
+
+Route::resource('category', 'CategoryController');
+Route::resource('brand', 'BrandController');
+Route::resource('product', 'ProductController');
+Route::resource('site', 'SiteController');

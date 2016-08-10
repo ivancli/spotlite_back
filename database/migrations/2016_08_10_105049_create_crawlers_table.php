@@ -9,13 +9,13 @@ class CreateCrawlersTable extends Migration {
 	{
 		Schema::create('crawlers', function(Blueprint $table) {
 			$table->increments('id');
+			$table->string('crawler_class', 255)->nullable();
+			$table->string('parser_class', 255)->nullable();
 			$table->integer('site_id')->unsigned()->index();
 			$table->integer('cookie_id')->unsigned()->nullable()->index();
 			$table->time('active_at')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
-			$table->string('crawler_class', 255)->nullable();
-			$table->string('parser_class', 255)->nullable();
 		});
 	}
 
