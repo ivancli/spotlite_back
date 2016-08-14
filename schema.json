@@ -1,0 +1,12 @@
+{
+  "users": {
+    "email": "string:unique",
+    "password": "string:index",
+    "first_name": "string:nullable",
+    "last_name": "string:nullable",
+    "last_active_at": "timestamp:nullable:index"
+  },
+  "categories": {
+    "name": "string:unique"
+  }
+}

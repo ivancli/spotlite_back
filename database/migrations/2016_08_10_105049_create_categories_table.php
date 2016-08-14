@@ -8,8 +8,9 @@ class CreateCategoriesTable extends Migration {
 	public function up()
 	{
 		Schema::create('categories', function(Blueprint $table) {
-			$table->increments('id');
-			$table->string('name', 255);
+			$table->increments('category_id');
+			$table->string('category_name', 255);
+			$table->integer('category_order')->unsigned()->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 		});

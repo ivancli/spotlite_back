@@ -8,10 +8,11 @@ class CreateProductsTable extends Migration {
 	public function up()
 	{
 		Schema::create('products', function(Blueprint $table) {
-			$table->increments('id');
-			$table->string('name', 255);
-			$table->integer('brand_id')->unsigned();
+			$table->increments('product_id');
+			$table->string('product_name', 255);
 			$table->integer('category_id')->unsigned()->nullable()->index();
+			$table->integer('product_order')->unsigned()->nullable();
+			$table->integer('user_id')->unsigned()->index();
 			$table->timestamps();
 			$table->softDeletes();
 		});

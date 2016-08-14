@@ -8,7 +8,7 @@ class CreateGroupUsersTable extends Migration {
 	public function up()
 	{
 		Schema::create('group_users', function(Blueprint $table) {
-			$table->increments('id');
+			$table->increments('group_user_id');
 			$table->integer('user_id')->unsigned()->index();
 			$table->integer('group_id')->unsigned()->index();
 			$table->timestamps();

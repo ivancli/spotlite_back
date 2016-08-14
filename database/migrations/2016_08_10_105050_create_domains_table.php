@@ -8,10 +8,10 @@ class CreateDomainsTable extends Migration {
 	public function up()
 	{
 		Schema::create('domains', function(Blueprint $table) {
-			$table->increments('id');
-			$table->string('url', 253)->unique();
-			$table->string('name', 255)->nullable();
-			$table->string('xpath', 255)->nullable();
+			$table->increments('domain_id');
+			$table->string('domain_url', 253)->unique();
+			$table->string('domain_name', 255)->nullable();
+			$table->string('domain_xpath', 255)->nullable();
 			$table->string('crawler_class', 255)->nullable();
 			$table->string('parser_class', 255)->nullable();
 			$table->timestamps();

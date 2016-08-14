@@ -3,14 +3,15 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateCrawledPricesTable extends Migration {
+class CreateHistoricalPricesTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('crawled_prices', function(Blueprint $table) {
-			$table->increments('id');
+		Schema::create('historical_prices', function(Blueprint $table) {
+			$table->increments('price_id');
 			$table->integer('crawler_id')->unsigned()->index();
 			$table->integer('site_id')->unsigned()->index();
+			$table->decimal('price');
 			$table->timestamps();
 			$table->softDeletes();
 		});

@@ -8,8 +8,8 @@ class CreateReportLogsTable extends Migration {
 	public function up()
 	{
 		Schema::create('report_logs', function(Blueprint $table) {
-			$table->increments('id');
-			$table->integer('task_id')->unsigned();
+			$table->increments('report_log_id');
+			$table->integer('report_task_id')->unsigned()->index();
 			$table->enum('status', array('started', 'prepared', 'validated', 'generated', 'saved'));
 			$table->string('message', 500)->nullable();
 			$table->timestamps();

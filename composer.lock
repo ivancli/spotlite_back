@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b59d4cf7bbfc9dacb94a6c06c436880b",
-    "content-hash": "cbd6671ced806cb4f15d11de9affd094",
+    "hash": "55174c1dd0f06dfceba87bf03c981aea",
+    "content-hash": "b5c2c7abb935eb9a16635fd9273b5839",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1997,6 +1997,50 @@
             "time": "2015-05-11 14:41:42"
         },
         {
+            "name": "laracasts/generators",
+            "version": "1.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laracasts/Laravel-5-Generators-Extended.git",
+                "reference": "d6afcc60dff846980393d59f6df2074b8a297b08"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laracasts/Laravel-5-Generators-Extended/zipball/d6afcc60dff846980393d59f6df2074b8a297b08",
+                "reference": "d6afcc60dff846980393d59f6df2074b8a297b08",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Laracasts\\Generators\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeffrey Way",
+                    "email": "jeffrey@laracasts.com"
+                }
+            ],
+            "description": "Extend Laravel 5's generators.",
+            "keywords": [
+                "generators",
+                "laravel"
+            ],
+            "time": "2015-12-31 18:44:32"
+        },
+        {
             "name": "mockery/mockery",
             "version": "0.9.5",
             "source": {
@@ -2060,6 +2104,59 @@
                 "testing"
             ],
             "time": "2016-05-22 21:52:33"
+        },
+        {
+            "name": "mojopollo/laravel-json-schema",
+            "version": "1.0.24",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mojopollo/laravel-json-schema.git",
+                "reference": "76e62530c7fc157a50768c7c0f179c9ec97c3a0e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mojopollo/laravel-json-schema/zipball/76e62530c7fc157a50768c7c0f179c9ec97c3a0e",
+                "reference": "76e62530c7fc157a50768c7c0f179c9ec97c3a0e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "~5.0",
+                "illuminate/filesystem": "~5.0",
+                "illuminate/support": "~5.0",
+                "laracasts/generators": "~1.1",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mojopollo\\Schema\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jaime Medina",
+                    "email": "jmedina@qujo.com"
+                }
+            ],
+            "description": "Create all your migrations and models from one JSON schema file. Laravel Database Schema in JSON allows you to define your entire Laravel database schema in one JSON file then generates all the necessary migration files",
+            "homepage": "http://localhost",
+            "keywords": [
+                "database",
+                "json",
+                "laravel",
+                "laravel migrations from json",
+                "mojo",
+                "mojopollo",
+                "schema"
+            ],
+            "time": "2016-04-16 06:04:06"
         },
         {
             "name": "phpdocumentor/reflection-common",

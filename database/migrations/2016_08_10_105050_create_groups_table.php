@@ -8,8 +8,8 @@ class CreateGroupsTable extends Migration {
 	public function up()
 	{
 		Schema::create('groups', function(Blueprint $table) {
-			$table->increments('id');
-			$table->string('name', 255);
+			$table->increments('group_id');
+			$table->string('group_name', 255);
 			$table->string('website', 253)->nullable();
 			$table->string('description', 500)->nullable();
 			$table->timestamps();

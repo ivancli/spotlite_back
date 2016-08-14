@@ -8,7 +8,7 @@ class CreateGroupProductsTable extends Migration {
 	public function up()
 	{
 		Schema::create('group_products', function(Blueprint $table) {
-			$table->increments('id');
+			$table->increments('group_product_id');
 			$table->integer('group_id')->unsigned()->index();
 			$table->integer('product_id')->unsigned()->index();
 			$table->timestamps();

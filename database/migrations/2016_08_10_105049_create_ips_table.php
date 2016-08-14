@@ -8,7 +8,7 @@ class CreateIpsTable extends Migration {
 	public function up()
 	{
 		Schema::create('ips', function(Blueprint $table) {
-			$table->increments('id');
+			$table->increments('ip_id');
 			$table->string('ip_address', 15)->unique();
 			$table->timestamps();
 			$table->softDeletes();
