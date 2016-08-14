@@ -69,6 +69,16 @@ class CreateForeignKeys extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('no action');
         });
+        Schema::table('products', function(Blueprint $table){
+            $table->foreign('report_task_id')->references('report_task_id')->on('report_tasks')
+                ->onDelete('cascade')
+                ->onUpdate('no action');
+        });
+        Schema::table('categories', function(Blueprint $table){
+            $table->foreign('report_task_id')->references('report_task_id')->on('report_tasks')
+                ->onDelete('cascade')
+                ->onUpdate('no action');
+        });
         Schema::table('reports', function (Blueprint $table) {
             $table->foreign('report_task_id')->references('report_task_id')->on('report_tasks')
                 ->onDelete('no action')
@@ -133,6 +143,12 @@ class CreateForeignKeys extends Migration
         });
         Schema::table('products', function (Blueprint $table) {
             $table->dropForeign('products_user_id_foreign');
+        });
+        Schema::table('products', function(Blueprint $table){
+            $table->dropForeign('products_report_task_id_foreign');
+        });
+        Schema::table('categories', function(Blueprint $table){
+            $table->dropForeign('categories_report_task_id_foreign');
         });
         Schema::table('reports', function (Blueprint $table) {
             $table->dropForeign('reports_report_task_id_foreign');

@@ -9,6 +9,7 @@ class CreateReportTasksTable extends Migration {
 	{
 		Schema::create('report_tasks', function(Blueprint $table) {
 			$table->increments('report_task_id');
+			$table->enum('report_type', array('product', 'category'));
 			$table->enum('frequency', array('daily', 'weekly', 'monthly'))->index();
 			$table->smallInteger('date')->unsigned()->nullable()->index()->default('1');
 			$table->tinyInteger('day')->unsigned()->nullable()->index();

@@ -11,6 +11,7 @@ class CreateCategoriesTable extends Migration {
 			$table->increments('category_id');
 			$table->string('category_name', 255);
 			$table->integer('category_order')->unsigned()->nullable();
+			$table->integer('report_task_id')->unsigned()->index()->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 		});
