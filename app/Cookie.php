@@ -17,8 +17,9 @@ class Cookie extends Model
     use SoftDeletes
     protected $table = 'cookies';
     public $timestamp = true;
-    protected $fillable = ['name', 'cookie_header', 'cookie_file'];
-    protected $visible = ['name', 'cookie_header', 'cookie_file'];
+    protected $primaryKey = 'cookie_id';
+    protected $fillable = ['cookie_name', 'cookie_header', 'cookie_file'];
+    protected $visible = ['cookie_name', 'cookie_header', 'cookie_file'];
     protected $date = ['deleted_at'];
 
     public function crawlers()

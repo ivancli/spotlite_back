@@ -17,8 +17,9 @@ class Category extends Model
     use SoftDeletes
     protected $table = 'categories';
     public $timestamp = true;
-    protected $fillable = ['name'];
-    protected $visible = ['name'];
+    protected $primaryKey = 'category_id';
+    protected $fillable = ['category_name'];
+    protected $visible = ['category_name'];
     protected $date = ['deleted_at'];
 
     public function products()
