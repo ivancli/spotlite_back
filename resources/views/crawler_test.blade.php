@@ -5,7 +5,7 @@
  * Date: 8/8/2016
  * Time: 2:49 PM
  */
-
+Auth::loginUsingId(1);
 ?>
         <!doctype html>
 <html lang="en">

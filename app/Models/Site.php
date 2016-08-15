@@ -6,7 +6,7 @@
  * Time: 9:14 PM
  */
 
-namespace App;
+namespace App\Model;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Site extends Model
 {
-    use SoftDeletes
+    use SoftDeletes;
     protected $table = 'sites';
     public $timestamp = true;
     protected $fillable = ['link', 'xpath'];

@@ -18,6 +18,11 @@ class CrawlerController extends Controller
 {
     use CommonFunctions;
 
+    public function __construct()
+    {
+        $this->middleware('role:admin', ['only' => ['destroy']]);
+    }
+
     public function crawl(Request $request)
     {
         $validator = Validator::make($request->all(), [

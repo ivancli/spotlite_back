@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDomainIPsTable extends Migration {
+class CreateDomainIpsTable extends Migration {
 
 	public function up()
 	{
@@ -17,6 +17,6 @@ class CreateDomainIPsTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('reports');
+		Schema::drop('domain_ips');
 	}
 }

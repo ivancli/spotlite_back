@@ -17,6 +17,6 @@ class CreateUserActivityLogsTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('reports');
+		Schema::drop('user_activity_logs');
 	}
 }

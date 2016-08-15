@@ -15,12 +15,11 @@ class CreateSubscriptionsTable extends Migration {
 			$table->string('api_subscription_id', 255);
 			$table->timestamp('expiry_date');
 			$table->timestamps();
-			$table->softDeletes();
 		});
 	}
 
 	public function down()
 	{
-		Schema::drop('reports');
+		Schema::drop('subscriptions');
 	}
 }

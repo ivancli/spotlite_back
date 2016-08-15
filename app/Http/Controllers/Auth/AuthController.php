@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Libraries\CommonFunctions;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -21,7 +22,7 @@ class AuthController extends Controller
     |
     */
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    use AuthenticatesAndRegistersUsers, ThrottlesLogins, CommonFunctions;
 
     /**
      * Where to redirect users after login / registration.
@@ -52,7 +53,8 @@ class AuthController extends Controller
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            /* we don't need password in user registration */
+//            'password' => 'required|min:6|confirmed',
         ]);
     }
 
@@ -64,6 +66,9 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        /*generate a temporary password*/
+        $data['password'] = $this->generateRandomString(20);
+
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],

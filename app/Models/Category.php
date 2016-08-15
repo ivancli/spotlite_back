@@ -6,7 +6,7 @@
  * Time: 9:10 PM
  */
 
-namespace App;
+namespace App\Model;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    use SoftDeletes
+    use SoftDeletes;
     protected $table = 'categories';
     public $timestamp = true;
     protected $primaryKey = 'category_id';
@@ -24,6 +24,11 @@ class Category extends Model
 
     public function products()
     {
-        $this->hasMany('App\Product', 'category_id');
+        return $this->hasMany('App\Product', 'category_id', 'category_id');
+    }
+
+    public function report_tasks()
+    {
+        return $this->belongsTo('App\ReportTask', 'report_task_id', 'report_task_id');
     }
 }

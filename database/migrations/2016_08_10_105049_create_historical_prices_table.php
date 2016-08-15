@@ -19,6 +19,6 @@ class CreateHistoricalPricesTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('crawled_prices');
+		Schema::drop('historical_prices');
 	}
 }
