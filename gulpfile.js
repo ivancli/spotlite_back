@@ -3,12 +3,10 @@ var elixir = require('laravel-elixir');
 var gulp = require('gulp');
 var task = elixir.Task;
 
-elixir.config.css.minifyCss.pluginOptions.processImport = false;
-
 elixir.config.sourcemaps = false;
 
-elixir.extend('remove', function(path) {
-    new task('remove', function() {
+elixir.extend('remove', function (path) {
+    new task('remove', function () {
         return del(path);
     });
 });
@@ -25,7 +23,7 @@ elixir.extend('remove', function(path) {
  |
  */
 
-elixir(function(mix) {
+elixir(function (mix) {
     mix.remove([
         'public/css',
         'public/images/vendor',
@@ -48,4 +46,15 @@ elixir(function(mix) {
         'vendor/almasaeed2010/adminlte/plugins/fastclick/fastclick.js',
         'vendor/almasaeed2010/adminlte/dist/js/app.min.js'
     ], 'public/assets/js/base.js', './');
+    mix.version(['public/assets/css/base.css', 'public/assets/js/base.js']);
+
+    /* copy images */
+    mix.copy('resources/assets/images', 'public/build/assets/images');
+
+    /* copy font files */
+    mix.copy('vendor/components/font-awesome/fonts', 'public/build/assets/fonts');
+    mix.copy('vendor/almasaeed2010/adminlte/bootstrap/fonts', 'public/build/assets/fonts');
+    mix.copy('vendor/driftyco/ionicons/fonts', 'public/build/assets/fonts');
+
+    mix.remove(['public/assets']);
 });
