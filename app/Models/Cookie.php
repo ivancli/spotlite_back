@@ -6,7 +6,7 @@
  * Time: 9:24 PM
  */
 
-namespace App\Model;
+namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -24,11 +24,11 @@ class Cookie extends Model
 
     public function crawlers()
     {
-        return $this->hasMany('App\Crawler', 'cookie_id', 'cookie_id');
+        return $this->hasMany('App\Models\Crawler', 'cookie_id', 'cookie_id');
     }
 
     public function domains()
     {
-        return $this->hasMany('App\Domain', 'cookie_id', 'cookie_id');
+        return $this->hasMany('App\Models\Domain', 'cookie_id', 'cookie_id');
     }
 }

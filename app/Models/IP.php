@@ -6,7 +6,7 @@
  * Time: 9:26 PM
  */
 
-namespace App\Model;
+namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -24,11 +24,11 @@ class IP extends Model
 
     public function crawlers()
     {
-        return $this->belongsToMany('App\Crawler', 'crawler_ips', 'ip_id', 'crawler_id');
+        return $this->belongsToMany('App\Models\Crawler', 'crawler_ips', 'ip_id', 'crawler_id');
     }
 
     public function domains()
     {
-        return $this->belongsToMany('App\Domain', 'domain_ips', 'ip_id', 'domain_id');
+        return $this->belongsToMany('App\Models\Domain', 'domain_ips', 'ip_id', 'domain_id');
     }
 }

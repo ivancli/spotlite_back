@@ -6,7 +6,7 @@
  * Time: 9:16 PM
  */
 
-namespace App\Model;
+namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -24,26 +24,26 @@ class Crawler extends Model
 
     public function site()
     {
-        return $this->belongsTo('App\Site', 'site_id', 'site_id');
+        return $this->belongsTo('App\Models\Site', 'site_id', 'site_id');
     }
 
     public function cookie()
     {
-        return $this->belongsTo('App\Cookie', 'cookie_id', 'cookie_id');
+        return $this->belongsTo('App\Models\Cookie', 'cookie_id', 'cookie_id');
     }
 
     public function ips()
     {
-        return $this->belongsToMany('App\IP', 'crawler_ips', 'crawler_id', 'ip_id');
+        return $this->belongsToMany('App\Models\IP', 'crawler_ips', 'crawler_id', 'ip_id');
     }
 
     public function historical_prices()
     {
-        return $this->hasMany('App\Price', 'crawler_id', 'crawler_id');
+        return $this->hasMany('App\Models\Price', 'crawler_id', 'crawler_id');
     }
 
     public function logs()
     {
-        return $this->hasMany('App\CrawlerLog', 'crawler_id', 'crawler_id');
+        return $this->hasMany('App\Models\CrawlerLog', 'crawler_id', 'crawler_id');
     }
 }

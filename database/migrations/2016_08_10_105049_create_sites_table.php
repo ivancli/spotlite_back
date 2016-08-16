@@ -9,7 +9,6 @@ class CreateSitesTable extends Migration {
 	{
 		Schema::create('sites', function(Blueprint $table) {
 			$table->increments('site_id');
-			$table->integer('product_id')->unsigned();
 			$table->string('site_url', 2083)->nullable()->index();
 			$table->string('site_xpath', 255)->nullable();
 			$table->decimal('recent_price')->nullable();

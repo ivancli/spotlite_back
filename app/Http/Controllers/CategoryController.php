@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
@@ -11,19 +11,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Validation\Validator;
 
-class ProductController extends Controller
+class CategoryController extends Controller
 {
-
-    public function __construct()
-    {
-        //handle CRUD middleware here
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @param Request $request
-     * @param null $user_id
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -33,20 +26,20 @@ class ProductController extends Controller
             Config::get('constants.TIER_1_ROLE_NAME'),
             Config::get('constants.TIER_2_ROLE_NAME'),))
         ) {
-            $products = Product::all();
+            $categories = Category::all();
         } else {
-            $products = Auth::user()->products();
+            $categories = Auth::user()->categories;
         }
-        $length = count($products);
+        $length = count($categories);
         if ($request->ajax()) {
             if ($request->wantsJson()) {
-                return response()->json(compact(['products', 'status', 'length']));
+                return response()->json(compact(['categories', 'status', 'length']));
             } else {
-                return $products;
+                return $categories;
             }
         } else {
             //TODO provide a view
-            return view('', compact(['products', 'status', 'length']));
+            return view('', compact(['categories', 'status', 'length']));
         }
     }
 
@@ -65,14 +58,14 @@ class ProductController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @return Product|\Illuminate\Http\Response
+     * @return Category|\Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         /* validation */
         $validator = Validator::make($request->all(), array(
-            'product_name' => 'required|max:255',
-            'product_order' => 'integer|max:10',
+            'category_name' => 'required|max:255',
+            'category_order' => 'integer|max:10',
         ));
         if ($validator->fails()) {
             $status = false;
@@ -87,17 +80,17 @@ class ProductController extends Controller
                 return redirect()->back()->withInput()->withErrors($errors);
             }
         } else {
-            $product = Product::create($request->all());
+            $category = Category::create($request->all());
             $status = true;
             if ($request->ajax()) {
                 if ($request->wantsJson()) {
-                    return response()->json(compact(['product', 'status']));
+                    return response()->json(compact(['category', 'status']));
                 } else {
-                    return $product;
+                    return $category;
                 }
             } else {
                 //TODO set view or redirect path
-                return redirect()->with(compact(['product', 'status']));
+                return redirect()->with(compact(['category', 'status']));
             }
         }
     }
@@ -112,17 +105,17 @@ class ProductController extends Controller
     public function show(Request $request, $id)
     {
         try {
-            $product = Product::findOrFail($id);
+            $category = Category::findOrFail($id);
             $status = true;
             if ($request->ajax()) {
                 if ($request->wantsJson()) {
-                    return response()->json(compact(['product', 'status']));
+                    return response()->json(compact(['category', 'status']));
                 } else {
-                    return $product;
+                    return $category;
                 }
             } else {
                 //TODO set view
-                return view('')->with(compact(['product', 'status']));
+                return view('')->with(compact(['category', 'status']));
             }
         } catch (ModelNotFoundException $e) {
             $status = false;
@@ -148,10 +141,10 @@ class ProductController extends Controller
     public function edit($id)
     {
         try {
-            $product = Product::findOrFail($id);
+            $category = Category::findOrFail($id);
             $status = true;
             //TODO set view
-            return view('')->with(compact(['product', 'status']));
+            return view('')->with(compact(['category', 'status']));
         } catch (ModelNotFoundException $e) {
             return redirect()->back()->withErrors($e->getMessage());
         }
@@ -166,10 +159,11 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         /* validation */
         $validator = Validator::make($request->all(), array(
-            'product_name' => 'max:255',
-            'product_order' => 'integer|max:10',
+            'category_name' => 'max:255',
+            'category_order' => 'integer|max:10',
         ));
         if ($validator->fails()) {
             $status = false;
@@ -186,17 +180,17 @@ class ProductController extends Controller
         } else {
             $status = true;
             try {
-                $product = Product::findOrFail($id);
-                $product->update($request->all());
+                $category = Category::findOrFail($id);
+                $category->update($request->all());
                 if ($request->ajax()) {
                     if ($request->wantsJson()) {
-                        return response()->json(compact(['status', 'product']));
+                        return response()->json(compact(['status', 'category']));
                     } else {
-                        return $product;
+                        return $category;
                     }
                 } else {
                     //TODO set view or redirect path
-                    return redirect()->with(compact(['status', 'product']));
+                    return redirect()->with(compact(['status', 'category']));
                 }
             } catch (ModelNotFoundException $e) {
                 $status = false;
@@ -224,8 +218,8 @@ class ProductController extends Controller
     public function destroy(Request $request, $id)
     {
         try {
-            $product = Product::findOrFail($id);
-            $product->delete();
+            $category = Category::findOrFail($id);
+            $category->delete();
             $status = true;
             if ($request->ajax()) {
                 if ($request->wantsJson()) {

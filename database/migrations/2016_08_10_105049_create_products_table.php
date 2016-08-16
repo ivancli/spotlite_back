@@ -12,7 +12,9 @@ class CreateProductsTable extends Migration {
 			$table->string('product_name', 255);
 			$table->integer('category_id')->unsigned()->nullable()->index();
 			$table->integer('product_order')->unsigned()->nullable();
-			$table->integer('user_id')->unsigned()->index();
+//			$table->integer('user_id')->unsigned()->index();
+			$table->integer('owner_id')->unsigned()->index();
+			$table->string('owner_type');
 			$table->integer('report_task_id')->unsigned()->index()->nullable();
 			$table->timestamps();
 			$table->softDeletes();

@@ -6,7 +6,7 @@
  * Time: 9:05 PM
  */
 
-namespace App\Model;
+namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -24,6 +24,11 @@ class Group extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\User', 'group_users', 'group_id', 'user_id');
+        return $this->belongsToMany('App\Models\User', 'group_users', 'group_id', 'user_id');
+    }
+
+    public function products()
+    {
+        return $this->morphMany('App\Models\Product', 'owner');
     }
 }

@@ -14,17 +14,24 @@
 //    return view('crawler_test');
 //});
 
-Route::get('/', ['uses'=> 'RoutingController@index']);
-
-/* Auth */
-Route::get('login', function(){
-    return view('auth/login');
+Route::get('/', function () {
+    return view('crawler_test');
 });
 
+/* Auth */
+Route::get('login', function () {
+    return view('auth/login');
+});
+Route::post('login', 'Auth\AuthController@postLogin');
+
+Route::get('register', function () {
+    return view('auth/register');
+});
+Route::post('register', 'Auth\AuthController@postRegister');
 
 
-Route::get('crawl', ['uses' => 'CrawlerController@crawl']);
-Route::post('crawl', ['uses' => 'CrawlerController@crawl']);
+Route::get('crawl', 'CrawlerController@crawl');
+Route::post('crawl', 'CrawlerController@crawl');
 
 Route::resource('category', 'CategoryController');
 Route::resource('brand', 'BrandController');

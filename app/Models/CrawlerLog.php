@@ -6,7 +6,7 @@
  * Time: 9:56 AM
  */
 
-namespace App\Model;
+namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -21,6 +21,6 @@ class CrawlerLog extends Model
 
     public function crawler()
     {
-        return $this->belongsTo('App\Crawler', 'crawler_id', 'crawler_id');
+        return $this->belongsTo('App\Models\Crawler', 'crawler_id', 'crawler_id');
     }
 }

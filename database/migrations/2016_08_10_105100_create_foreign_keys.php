@@ -14,8 +14,18 @@ class CreateForeignKeys extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('no action');
         });
-        Schema::table('sites', function (Blueprint $table) {
+//        Schema::table('sites', function (Blueprint $table) {
+//            $table->foreign('product_id')->references('product_id')->on('products')
+//                ->onDelete('cascade')
+//                ->onUpdate('no action');
+//        });
+        Schema::table('product_sites', function(Blueprint $table){
             $table->foreign('product_id')->references('product_id')->on('products')
+                ->onDelete('cascade')
+                ->onUpdate('no action');
+        });
+        Schema::table('product_sites', function(Blueprint $table){
+            $table->foreign('site_id')->references('site_id')->on('sites')
                 ->onDelete('cascade')
                 ->onUpdate('no action');
         });
@@ -64,11 +74,11 @@ class CreateForeignKeys extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('no action');
         });
-        Schema::table('products', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users')
-                ->onDelete('cascade')
-                ->onUpdate('no action');
-        });
+//        Schema::table('products', function (Blueprint $table) {
+//            $table->foreign('user_id')->references('id')->on('users')
+//                ->onDelete('cascade')
+//                ->onUpdate('no action');
+//        });
         Schema::table('products', function(Blueprint $table){
             $table->foreign('report_task_id')->references('report_task_id')->on('report_tasks')
                 ->onDelete('cascade')
@@ -111,8 +121,14 @@ class CreateForeignKeys extends Migration
         Schema::table('products', function (Blueprint $table) {
             $table->dropForeign('products_category_id_foreign');
         });
-        Schema::table('sites', function (Blueprint $table) {
-            $table->dropForeign('sites_product_id_foreign');
+//        Schema::table('sites', function (Blueprint $table) {
+//            $table->dropForeign('sites_product_id_foreign');
+//        });
+        Schema::table('product_sites', function(Blueprint $table){
+            $table->dropForeign('product_sites_product_id_foreign');
+        });
+        Schema::table('product_sites', function(Blueprint $table){
+            $table->dropForeign('product_sites_site_id_foreign');
         });
         Schema::table('historical_prices', function (Blueprint $table) {
             $table->dropForeign('historical_prices_crawler_id_foreign');
@@ -141,9 +157,9 @@ class CreateForeignKeys extends Migration
         Schema::table('group_users', function (Blueprint $table) {
             $table->dropForeign('group_users_group_id_foreign');
         });
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropForeign('products_user_id_foreign');
-        });
+//        Schema::table('products', function (Blueprint $table) {
+//            $table->dropForeign('products_user_id_foreign');
+//        });
         Schema::table('products', function(Blueprint $table){
             $table->dropForeign('products_report_task_id_foreign');
         });

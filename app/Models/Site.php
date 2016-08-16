@@ -6,7 +6,7 @@
  * Time: 9:14 PM
  */
 
-namespace App\Model;
+namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -23,11 +23,16 @@ class Site extends Model
 
     public function product()
     {
-        return $this->belongsTo('App\Product', 'product_id');
+        return $this->belongsToMany('App\Models\Site', 'product_sites', 'site_id', 'product_id');
     }
 
     public function prices()
     {
-        return $this->hasMany('App\Price', 'site_id');
+        return $this->hasMany('App\Models\Price', 'site_id');
+    }
+
+    public function crawler()
+    {
+        return $this->hasOne('App\Models\Crawler', 'site_id', 'site_id');
     }
 }

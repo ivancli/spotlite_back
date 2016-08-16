@@ -6,7 +6,7 @@
  * Time: 9:36 AM
  */
 
-namespace App\Model;
+namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -21,21 +21,21 @@ class ReportTask extends Model
 
     public function product()
     {
-        return $this->hasOne('App\Product', 'report_task_id', 'report_task_id');
+        return $this->hasOne('App\Models\Product', 'report_task_id', 'report_task_id');
     }
 
     public function category()
     {
-        return $this->hasOne('App\Category', 'report_task_id', 'report_task_id');
+        return $this->hasOne('App\Models\Category', 'report_task_id', 'report_task_id');
     }
 
     public function logs()
     {
-        return $this->hasMany('App\ReportLog', 'report_task_id', 'report_task_id');
+        return $this->hasMany('App\Models\ReportLog', 'report_task_id', 'report_task_id');
     }
 
     public function report()
     {
-        return $this->hasMany('App\Report', 'report_task_id', 'report_task_id');
+        return $this->hasMany('App\Models\Report', 'report_task_id', 'report_task_id');
     }
 }

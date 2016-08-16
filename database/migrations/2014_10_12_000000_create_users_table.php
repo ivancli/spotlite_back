@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->string('verification_code', 1024)->nullable();
-            $table->enum('never_login', array('yes', 'no'))->default('yes');
+            $table->timestamp('last_login')->nullable();
             $table->timestamps();
         });
     }

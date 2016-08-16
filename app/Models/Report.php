@@ -6,7 +6,7 @@
  * Time: 10:03 AM
  */
 
-namespace App\Model;
+namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -23,6 +23,6 @@ class Report extends Model
 
     public function report_task()
     {
-        return $this->belongsTo('App\ReportTask', 'report_task_id', 'report_task_id');
+        return $this->belongsTo('App\Models\ReportTask', 'report_task_id', 'report_task_id');
     }
 }

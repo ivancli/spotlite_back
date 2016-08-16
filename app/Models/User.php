@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
@@ -25,4 +25,28 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function products()
+    {
+        return $this->morphMany('App\Models\Product', 'owner');
+    }
+
+    public function categories()
+    {
+        return $this->morphToMany('App\Models\Category', 'owner', 'products');
+    }
+
+    public function subscription()
+    {
+        return $this->hasOne('App\Models\Subscription', 'user_id', 'id');
+    }
+
+    public function subscription_expired()
+    {
+//        if($this->subscription)
+//        $expiryTimestamp = strtotime($this->subscription->expiry_date);
+//        $currentTimestamp = time();
+//        return $expiryTimestamp < $currentTimestamp;
+        return false;
+    }
 }

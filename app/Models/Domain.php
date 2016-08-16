@@ -6,7 +6,7 @@
  * Time: 9:51 AM
  */
 
-namespace App\Model;
+namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -24,11 +24,11 @@ class Domain extends Model
 
     public function cookie()
     {
-        return $this->belongsTo('App\Cookie', 'cookie_id', 'cookie_id');
+        return $this->belongsTo('App\Models\Cookie', 'cookie_id', 'cookie_id');
     }
 
     public function ips()
     {
-        return $this->belongsToMany('App\IP', 'domain_ips', 'domain_id', 'ip_id');
+        return $this->belongsToMany('App\Models\IP', 'domain_ips', 'domain_id', 'ip_id');
     }
 }

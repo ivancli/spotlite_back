@@ -6,7 +6,7 @@
  * Time: 9:31 AM
  */
 
-namespace App\Model;
+namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -24,11 +24,11 @@ class Price extends Model
 
     public function crawlers()
     {
-        return $this->belongsTo('App\Crawler', 'crawler_id', 'crawler_id');
+        return $this->belongsTo('App\Models\Crawler', 'crawler_id', 'crawler_id');
     }
 
     public function site()
     {
-        return $this->belongsTo('App\Site', 'site_id', 'site_id');
+        return $this->belongsTo('App\Models\Site', 'site_id', 'site_id');
     }
 }
