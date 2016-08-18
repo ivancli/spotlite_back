@@ -10,8 +10,8 @@ class CreateSitesTable extends Migration {
 		Schema::create('sites', function(Blueprint $table) {
 			$table->increments('site_id');
 			$table->string('site_url', 2083)->nullable()->index();
-			$table->string('site_xpath', 255)->nullable();
-			$table->decimal('recent_price')->nullable();
+			$table->text('site_xpath')->nullable();
+			$table->decimal('recent_price', 20, 4)->nullable();
 			$table->timestamp('last_crawled_at')->nullable();
 			$table->timestamps();
 			$table->softDeletes();

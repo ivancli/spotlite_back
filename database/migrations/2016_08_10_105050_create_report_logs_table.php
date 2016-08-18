@@ -11,7 +11,7 @@ class CreateReportLogsTable extends Migration {
 			$table->increments('report_log_id');
 			$table->integer('report_task_id')->unsigned()->index();
 			$table->enum('status', array('started', 'prepared', 'validated', 'generated', 'saved'));
-			$table->string('message', 500)->nullable();
+			$table->text('message')->nullable();
 			$table->timestamps();
 		});
 	}

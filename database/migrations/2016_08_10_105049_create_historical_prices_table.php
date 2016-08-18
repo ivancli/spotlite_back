@@ -11,7 +11,7 @@ class CreateHistoricalPricesTable extends Migration {
 			$table->increments('price_id');
 			$table->integer('crawler_id')->unsigned()->index();
 			$table->integer('site_id')->unsigned()->index();
-			$table->decimal('price');
+            $table->decimal('price', 20, 4);
 			$table->timestamps();
 			$table->softDeletes();
 		});

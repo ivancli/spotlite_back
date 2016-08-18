@@ -19,12 +19,12 @@ class CreateForeignKeys extends Migration
 //                ->onDelete('cascade')
 //                ->onUpdate('no action');
 //        });
-        Schema::table('product_sites', function(Blueprint $table){
+        Schema::table('product_sites', function (Blueprint $table) {
             $table->foreign('product_id')->references('product_id')->on('products')
                 ->onDelete('cascade')
                 ->onUpdate('no action');
         });
-        Schema::table('product_sites', function(Blueprint $table){
+        Schema::table('product_sites', function (Blueprint $table) {
             $table->foreign('site_id')->references('site_id')->on('sites')
                 ->onDelete('cascade')
                 ->onUpdate('no action');
@@ -79,12 +79,12 @@ class CreateForeignKeys extends Migration
 //                ->onDelete('cascade')
 //                ->onUpdate('no action');
 //        });
-        Schema::table('products', function(Blueprint $table){
+        Schema::table('products', function (Blueprint $table) {
             $table->foreign('report_task_id')->references('report_task_id')->on('report_tasks')
                 ->onDelete('cascade')
                 ->onUpdate('no action');
         });
-        Schema::table('categories', function(Blueprint $table){
+        Schema::table('categories', function (Blueprint $table) {
             $table->foreign('report_task_id')->references('report_task_id')->on('report_tasks')
                 ->onDelete('cascade')
                 ->onUpdate('no action');
@@ -114,6 +114,21 @@ class CreateForeignKeys extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('no action');
         });
+        Schema::table('alerts', function (Blueprint $table) {
+            $table->foreign('comparison_site_id')->references('site_id')->on('sites')
+                ->onDelete('cascade')
+                ->onUpdate('no action');
+        });
+        Schema::table('alert_emails', function (Blueprint $table) {
+            $table->foreign('alert_id')->references('alert_id')->on('alerts')
+                ->onDelete('cascade')
+                ->onUpdate('no action');
+        });
+        Schema::table('alert_logs', function (Blueprint $table) {
+            $table->foreign('alert_id')->references('alert_id')->on('alerts')
+                ->onDelete('cascade')
+                ->onUpdate('no action');
+        });
     }
 
     public function down()
@@ -124,10 +139,10 @@ class CreateForeignKeys extends Migration
 //        Schema::table('sites', function (Blueprint $table) {
 //            $table->dropForeign('sites_product_id_foreign');
 //        });
-        Schema::table('product_sites', function(Blueprint $table){
+        Schema::table('product_sites', function (Blueprint $table) {
             $table->dropForeign('product_sites_product_id_foreign');
         });
-        Schema::table('product_sites', function(Blueprint $table){
+        Schema::table('product_sites', function (Blueprint $table) {
             $table->dropForeign('product_sites_site_id_foreign');
         });
         Schema::table('historical_prices', function (Blueprint $table) {
@@ -160,10 +175,10 @@ class CreateForeignKeys extends Migration
 //        Schema::table('products', function (Blueprint $table) {
 //            $table->dropForeign('products_user_id_foreign');
 //        });
-        Schema::table('products', function(Blueprint $table){
+        Schema::table('products', function (Blueprint $table) {
             $table->dropForeign('products_report_task_id_foreign');
         });
-        Schema::table('categories', function(Blueprint $table){
+        Schema::table('categories', function (Blueprint $table) {
             $table->dropForeign('categories_report_task_id_foreign');
         });
         Schema::table('reports', function (Blueprint $table) {
@@ -180,6 +195,15 @@ class CreateForeignKeys extends Migration
         });
         Schema::table('domain_ips', function (Blueprint $table) {
             $table->dropForeign('domain_ips_ip_id_foreign');
+        });
+        Schema::table('alerts', function (Blueprint $table) {
+            $table->dropForeign('alerts_comparison_site_id_foreign');
+        });
+        Schema::table('alert_emails', function (Blueprint $table) {
+            $table->dropForeign('alert_emails_alert_id_foreign');
+        });
+        Schema::table('alert_logs', function (Blueprint $table) {
+            $table->dropForeign('alert_logs_alert_id_foreign');
         });
     }
 }

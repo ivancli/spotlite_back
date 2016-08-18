@@ -9,8 +9,8 @@ class CreateCookiesTable extends Migration {
 	{
 		Schema::create('cookies', function(Blueprint $table) {
 			$table->increments('cookie_id');
-			$table->string('cookie_name', 255);
-			$table->string('cookie_header', 500);
+			$table->text('cookie_name');
+			$table->text('cookie_header');
 			$table->binary('cookie_file');
 			$table->timestamps();
 			$table->softDeletes();

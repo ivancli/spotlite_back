@@ -10,7 +10,7 @@ class CreateUserActivityLogsTable extends Migration {
 		Schema::create('user_activity_logs', function(Blueprint $table) {
 			$table->increments('user_activity_log_id');
 			$table->integer('user_id')->unsigned()->index();
-			$table->string('activity', 500);
+			$table->text('activity');
 			$table->timestamps();
 		});
 	}

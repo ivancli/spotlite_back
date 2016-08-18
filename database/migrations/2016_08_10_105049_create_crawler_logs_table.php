@@ -11,7 +11,7 @@ class CreateCrawlerLogsTable extends Migration {
 			$table->increments('crawler_log_id');
 			$table->integer('crawler_id')->unsigned()->index();
 			$table->enum('status', array('started', 'prepared', 'crawled', 'validated', 'reported', 'finished'))->index();
-			$table->string('message', 500)->nullable();
+			$table->text('message')->nullable();
 			$table->timestamps();
 		});
 	}

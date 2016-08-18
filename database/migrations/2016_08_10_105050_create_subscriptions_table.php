@@ -10,9 +10,9 @@ class CreateSubscriptionsTable extends Migration {
 		Schema::create('subscriptions', function(Blueprint $table) {
 			$table->increments('subscription_id');
 			$table->integer('user_id')->unsigned()->index();
-			$table->string('api_product_id', 255);
-			$table->string('api_customer_id', 255);
-			$table->string('api_subscription_id', 255);
+			$table->text('api_product_id');
+			$table->text('api_customer_id');
+			$table->text('api_subscription_id');
 			$table->timestamp('expiry_date');
 			$table->timestamps();
 		});
