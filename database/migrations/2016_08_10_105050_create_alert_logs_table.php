@@ -8,7 +8,7 @@ class CreateAlertLogsTable extends Migration {
 	public function up()
 	{
 		Schema::create('alert_logs', function(Blueprint $table) {
-			$table->increments('alert_log_id');
+			$table->bigIncrements('alert_log_id');
             $table->integer('alert_id')->unsigned();
             $table->text('content');
 			$table->timestamps();

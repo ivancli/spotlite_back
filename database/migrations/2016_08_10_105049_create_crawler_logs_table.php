@@ -8,7 +8,7 @@ class CreateCrawlerLogsTable extends Migration {
 	public function up()
 	{
 		Schema::create('crawler_logs', function(Blueprint $table) {
-			$table->increments('crawler_log_id');
+			$table->bigIncrements('crawler_log_id');
 			$table->integer('crawler_id')->unsigned()->index();
 			$table->enum('status', array('started', 'prepared', 'crawled', 'validated', 'reported', 'finished'))->index();
 			$table->text('message')->nullable();

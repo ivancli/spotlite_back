@@ -12,7 +12,7 @@ class CreateCrawlersTable extends Migration
             $table->increments('crawler_id');
             $table->text('crawler_class')->nullable();
             $table->text('parser_class')->nullable();
-            $table->enum('status', array('running', 'standby'));
+            $table->enum('status', array('picked', 'queuing', 'running'))->nullable();
             $table->integer('site_id')->unsigned()->index();
             $table->integer('cookie_id')->unsigned()->nullable()->index();
             $table->timestamp('active_at')->nullable();

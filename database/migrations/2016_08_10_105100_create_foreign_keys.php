@@ -104,6 +104,11 @@ class CreateForeignKeys extends Migration
                 ->onDelete('no action')
                 ->onUpdate('no action');
         });
+        Schema::table('domains', function(Blueprint $table){
+            $table->foreign('cookie_id')->references('cookie_id')->on('cookies')
+                ->onDelete('set null')
+                ->onUpdate('no action');
+        });
         Schema::table('domain_ips', function (Blueprint $table) {
             $table->foreign('domain_id')->references('domain_id')->on('domains')
                 ->onDelete('cascade')
@@ -189,6 +194,9 @@ class CreateForeignKeys extends Migration
         });
         Schema::table('user_activity_logs', function (Blueprint $table) {
             $table->dropForeign('user_activity_logs_user_id_foreign');
+        });
+        Schema::table('domains', function (Blueprint $table) {
+            $table->dropForeign('domains_cookie_id_foreign');
         });
         Schema::table('domain_ips', function (Blueprint $table) {
             $table->dropForeign('domain_ips_domain_id_foreign');

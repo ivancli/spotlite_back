@@ -8,7 +8,7 @@ class CreateReportsTable extends Migration {
 	public function up()
 	{
 		Schema::create('reports', function(Blueprint $table) {
-			$table->increments('report_id');
+			$table->bigIncrements('report_id');
 			$table->integer('report_task_id')->unsigned()->index();
 //			$table->binary('content')->nullable();
 			$table->timestamps();

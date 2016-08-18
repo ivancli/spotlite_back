@@ -16,6 +16,7 @@ class CreateReportTasksTable extends Migration {
 			$table->time('time')->nullable();
 			$table->enum('weekday_only', array('yes', 'no'))->nullable();
 			$table->enum('delivery_method', array('email', 'sms'));
+            $table->enum('status', array('picked', 'queuing', 'running'))->nullable();
 			$table->timestamps();
 		});
 	}
